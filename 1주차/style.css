@@ -1,0 +1,13 @@
+.my-table {
+    width: 500px;
+    border-collapse: collapse;
+}
+.my-table tr {
+    border-bottom: 1px solid #000;
+}
+.my-table td {
+    padding: 5px;
+}
+.my-table th {
+    text-align: center;
+}

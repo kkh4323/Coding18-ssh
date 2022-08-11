@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./bt2.css" />
+    <title>Document</title>
+    <script>
+      function clickPost(postid) {
+        alert(postid + " 게시글을 클릭했습니다.");
+      }
+      $(document).ready(function () {
+        $("#post-3").click(function () {
+          clickPost(3);
+        });
+        $("#post-2").click(function () {
+          clickPost(2);
+        });
+        $("#post-1").click(function () {
+          clickPost(1);
+        });
+
+        $(".fastcampus").click(function(){
+          let id = $(this).attr("id");
+          clickPost(id);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="my-table">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">일시</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="3" class="fastcampus">
+            <th scope="row">3</th>
+            <td>세 번째 글</td>
+            <td>김강호</td>
+            <td>2022-07-19</td>
+          </tr>
+          <tr id="2" class="fastcampus">
+            <th scope="row">2</th>
+            <td>두 번째 글</td>
+            <td>김강호</td>
+            <td>2022-07-19</td>
+          </tr>
+          <tr id="1" class="fastcampus">
+            <th scope="row">1</th>
+            <td>첫 번째 글</td>
+            <td>김강호</td>
+            <td>2022-07-19</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

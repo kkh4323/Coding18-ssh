@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+			integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="/static/styles.css">
+		<script>
+			/*
+			function clickPost(postid){
+				console.log(postid);
+				const myModal = new bootstrap.Modal(document.getElementById("list-Modal"), {});
+				const url = "https://jsonplaceholder.typicode.com/posts/" + postid;
+				fetch(url).then((response) => response.json())
+				.then((data) => {
+					console.log(url);
+					console.log(data);
+					document.getElementById("list-ModalLabel").innerText = data.title;
+					document.getElementById("list-modalContent").innerText = data.body;
+					myModal.show();
+				});
+			};
+			document.addEventListener("DOMContentLoaded", function(){
+				const mediaList = document.getElementsByClassName("media");
+				for (let i=0; i<mediaList.length; i++){
+					mediaList[i].addEventListener("click", function(){
+						let id = this.getAttribute("id");
+						clickPost(id);
+					});
+				};
+			});*/
+			/*function clickPost(postid){
+				console.log(window.navigator.userAgent);
+				const myModal = new bootstrap.Modal(document.getElementById("list-Modal"), {});
+				const xhr = new XMLHttpRequest();
+				const url = "https://jsonplaceholder.typicode.com/posts/" + postid;
+				xhr.onreadystatechange = function({target}){
+					console.log(target);
+					if (target.readyState === 4) {
+						const {status} = target
+						if (status === 0 || (status >= 200 && status < 400)){
+							console.log(xhr.response);
+							document.getElementById("list-ModalLabel").innerText = xhr.response.title;
+							document.getElementById("list-modalContent").innerText = xhr.response.body;
+							myModal.show();
+						};
+					};
+				};
+				xhr.open("GET", url, true);
+				xhr.responseType = 'json';
+				xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+				xhr.send();
+			};
+			document.addEventListener("DOMContentLoaded", function(){
+				const mediaList = document.getElementsByClassName("media");
+				for (let i=0; i<mediaList.length; i++){
+					mediaList[i].addEventListener("click", function(){
+						let id = this.getAttribute("id");
+						clickPost(id);
+					});
+				};
+			});*/
+			function clickPost(postid) {
+				const url = "https://jsonplaceholder.typicode.com/posts/" + postid;
+				$.get(url).then(function(data){
+					$("#list-ModalLabel").text(data.title);
+					$("#list-modalContent").text(data.body);
+					$("#list-Modal").modal("show");
+				});
+			};
+			$(document).ready(function () {
+				$(".media").click(function(){
+					const id = $(this).attr("id");
+					clickPost(id);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="product-list">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<div id="1" class="media">
+						<img src="/static/prod1.jpg" class="mr-3 product-image" alt="장난감 블록">
+						<div class="media-body">
+							<strong>장난감 블록</strong><br>
+							<small>성수동</small><br>
+							<span>20,000원</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div id="2" class="media">
+						<img src="/static/prod2.jpg" class="mr-3 product-image" alt="곰인형">
+						<div class="media-body">
+							<strong>곰인형</strong><br>
+							<small>성수동</small><br>
+							<span>50,000원</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div id="3" class="media">
+						<img src="/static/prod3.jpg" class="mr-3 product-image" alt="곰인형2">
+						<div class="media-body">
+							<strong>곰인형2</strong><br>
+							<small>장안동</small><br>
+							<span>9,000원</span>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div id="4" class="media">
+						<img src="/static/prod4.jpg" class="mr-3 product-image" alt="곰인형3">
+						<div class="media-body">
+							<strong>곰인형3</strong><br>
+							<small>고잔동</small><br>
+							<span>30,000원</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="modal fade" id="list-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="list-ModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="list-modalContent">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+		<button type="button" class="btn btn-primary register-btn" data-toggle="modal" data-target="#reg-Modal" data-whatever="@getbootstrap">상품 등록</button>
+		<div class="modal fade" id="reg-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form method="POST" action="/register">
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">제목</label>
+								<input type="text" class="form-control" id="reg-title" name="reg-title">
+							</div>
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">지역</label>
+								<input type="text" class="form-control" id="reg-addr" name="reg-addr">
+							</div>
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">가격</label>
+								<input type="text" class="form-control" id="reg-price" name="reg-price">
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">내용</label>
+								<textarea class="form-control" id="reg-text" name="reg-text" rows="3"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">등록</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
