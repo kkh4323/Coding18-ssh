@@ -76,17 +76,20 @@
 					});
 				};
 			});*/
-			function clickPost(postid) {
-				const url = "https://jsonplaceholder.typicode.com/posts/" + postid;
+			function clickPost(product_id) {
+				console.log(product_id)
+				const url = "/detail?title=" + product_id;
+				console.log(url)
 				$.get(url).then(function(data){
 					$("#list-ModalLabel").text(data.title);
-					$("#list-modalContent").text(data.body);
+					$("#list-modalContent").text(data.text);
 					$("#list-Modal").modal("show");
 				});
 			};
 			$(document).ready(function () {
 				$(".media").click(function(){
 					const id = $(this).attr("id");
+					console.log(id)
 					clickPost(id);
 				});
 			});
@@ -95,46 +98,18 @@
 	<body>
 		<div class="product-list">
 			<ul class="list-group list-group-flush">
+				{% for il in itemList %}
 				<li class="list-group-item">
-					<div id="1" class="media">
+					<div id="{{ il.title }}" class="media">
 						<img src="/static/prod1.jpg" class="mr-3 product-image" alt="장난감 블록">
 						<div class="media-body">
-							<strong>장난감 블록</strong><br>
-							<small>성수동</small><br>
-							<span>10,000원</span>
+							<strong>{{il.title}}</strong><br>
+							<small>{{il.addr}}</small><br>
+							<span>{{il.price}}</span>
 						</div>
 					</div>
 				</li>
-				<li class="list-group-item">
-					<div id="2" class="media">
-						<img src="/static/prod2.jpg" class="mr-3 product-image" alt="곰인형">
-						<div class="media-body">
-							<strong>곰인형</strong><br>
-							<small>성수동</small><br>
-							<span>50,000원</span>
-						</div>
-					</div>
-				</li>
-				<li class="list-group-item">
-					<div id="3" class="media">
-						<img src="/static/prod3.jpg" class="mr-3 product-image" alt="곰인형2">
-						<div class="media-body">
-							<strong>곰인형2</strong><br>
-							<small>장안동</small><br>
-							<span>9,000원</span>
-						</div>
-					</div>
-				</li>
-				<li class="list-group-item">
-					<div id="4" class="media">
-						<img src="/static/prod4.jpg" class="mr-3 product-image" alt="곰인형3">
-						<div class="media-body">
-							<strong>곰인형3</strong><br>
-							<small>고잔동</small><br>
-							<span>30,000원</span>
-						</div>
-					</div>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="modal fade" id="list-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

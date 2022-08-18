@@ -164,3 +164,15 @@ body {
   color: #fff;
   font-weight: bold;
 }
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: var(--black);
+  padding: 5px;
+  border-radius: 5px;
+  background: #fff;
+  margin: 5px;
+}
